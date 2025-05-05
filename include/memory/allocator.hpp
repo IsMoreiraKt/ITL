@@ -32,10 +32,25 @@ namespace itl {
  * whether it is in use, its size, and a pointer to the allocated memory.
  */
 typedef struct {
-  bool used; ///< Indicates whether the allocation is currently in use.
-  itl::size_t size; ///< The size of the allocated memory, in bytes.
-  void* ptr; ///< A pointer to the allocated memory.
+    bool used; ///< Indicates whether the allocation is currently in use.
+    itl::size_t size; ///< The size of the allocated memory, in bytes.
+    void* ptr; ///< A pointer to the allocated memory.
 } AllocationMetadata;
+
+/**
+ * @struct MemoryBlock
+ * @brief Represents a block of memory managed by the allocator.
+ *
+ * A memory block contains a base pointer, chunk size, total number of chunks,
+ * and an array of allocation metadata for tracking individual allocations.
+ */
+typedef struct {
+    void* base; ///< Base address of the memory block.
+    itl::size_t chunkSize; ///< Size of each chunk in the block, in bytes.
+    itl::size_t totalChunks; ///< Total number of chunks in the block.
+    AllocationMetadata slots[MAX_CHUNKS]; ///< Metadata for each chunk.
+    MemoryBlock* next; ///< Pointer to the next memory block in the chain.
+} MemoryBlock;
 
 /**
  * @brief Allocates a block of memory of the specified size.
