@@ -24,10 +24,27 @@ function getAssemblyScripts()
   ASSEMBLY_FILES=$(find arch/"$USER_ARCHITECTURE" -type f -name "*.S")
 }
 
+function mountAssembly()
+{
+  ASSEMBLY_OBJECTS=""
+
+  for file in $ASSEMBLY_FILES; do
+    base_name=$(basename "$file")
+    output_file="$build_dir/$base_name).o"
+
+    as -o "$output_file" "$file"
+
+    ASSEMBLY_OBJECTS="$ASSEMBLY_OBJECTS $output_file"
+  done
+}
+
 function main()
 {
   mkdir -p "$BUILD_DIRECTORY"
+  
   getUserArch
+  getAssemblyScripts
+  mountAssembly
 }
 
 
