@@ -1,5 +1,5 @@
 /**
- * @file allocator.hpp
+ * @file include/memory/allocator.hpp
  * @brief Provides memory allocation utilities for the ITL library.
  * @category Memory Management
  *
@@ -23,6 +23,7 @@
 namespace itl {
 #define MAX_CHUNKS 4096 ///< Maximum number of chunks per memory block.
 #define MAX_BLOCKS 33554432 ///< Maximum number of memory blocks in the memory map.
+#define MIN_PAGE_SIZE 4096 ///< Minimum size of a memory page.
 
 /**
  * @struct AllocationMetadata
