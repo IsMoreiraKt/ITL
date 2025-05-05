@@ -1,0 +1,5 @@
+#!/bin/bash
+
+INCLUDE_DIRECTORY="include"
+BUILD_DIRECTORY="build"
+CPP_FILES=$(find src -type f -name "*.cpp")
