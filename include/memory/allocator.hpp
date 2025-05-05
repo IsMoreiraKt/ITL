@@ -53,6 +53,17 @@ typedef struct {
 } MemoryBlock;
 
 /**
+ * @struct MemoryMap
+ * @brief Represents a map of memory blocks managed by the allocator.
+ *
+ * The memory map tracks multiple memory blocks and their count.
+ */
+typedef struct {
+    MemoryBlock* blocks[MAX_BLOCKS]; ///< Array of pointers to memory blocks.
+    size_t blockCount; ///< Number of memory blocks currently in use.
+} MemoryMap;
+
+/**
  * @brief Allocates a block of memory of the specified size.
  *
  * @param size The size of the memory block to allocate, in bytes.
