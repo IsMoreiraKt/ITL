@@ -3,3 +3,27 @@
 INCLUDE_DIRECTORY="include"
 BUILD_DIRECTORY="build"
 CPP_FILES=$(find src -type f -name "*.cpp")
+
+
+function getUserArch()
+{
+  USER_ARCHITECTURE=$(uname -m)
+
+  case "$USER_ARCHITECTURE" in
+    x86_64)
+      USER_ARCHITECTURE="x64"
+      ;;
+    i386 | i486 | i586 | i686)
+      USER_ARCHITECTURE="x86"
+      ;;
+  esac
+}
+
+function main()
+{
+  mkdir -p "$BUILD_DIRECTORY"
+  getUserArch
+}
+
+
+main
