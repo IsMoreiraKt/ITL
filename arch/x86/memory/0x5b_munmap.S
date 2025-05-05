@@ -11,7 +11,7 @@
 # @note This implementation is specific to Linux systems on x86 (32-bit)
 # architecture.
 #
-# @details The munmap system call is invoked using the `int 0x80` instruction,
+# @details The munmap system call is invoked using the int 0x80 instruction,
 # which is the standard method for system calls in 32-bit Linux.
 #
 # @warning The parameters and calling convention differ from the 64-bit version.

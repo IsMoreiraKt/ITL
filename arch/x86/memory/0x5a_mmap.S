@@ -13,7 +13,7 @@
 #
 # @warning The parameters and calling convention differ from the 64-bit version.
 #
-# @details The mmap system call is invoked using the `int 0x80` instruction,
+# @details The mmap system call is invoked using the int 0x80 instruction,
 # which is the standard method for system calls in 32-bit Linux.
 #
 # @author Ismael Moreira
@@ -27,7 +27,7 @@ global mmap
 # This function maps a region of memory into the address space of the calling
 # process.
 #
-# @param ebx A pointer to a `mmap_arg_struct` containing the parameters for
+# @param ebx A pointer to a mmap_arg_struct containing the parameters for
 # the mapping.
 # @return eax A pointer to the mapped memory region, or -1 if the mapping
 # fails.
