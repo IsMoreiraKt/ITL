@@ -25,6 +25,19 @@ namespace itl {
 #define MAX_BLOCKS 33554432 ///< Maximum number of memory blocks in the memory map.
 
 /**
+ * @struct AllocationMetadata
+ * @brief Metadata for a single memory allocation.
+ *
+ * This structure tracks the state of a memory allocation, including
+ * whether it is in use, its size, and a pointer to the allocated memory.
+ */
+typedef struct {
+  bool used; ///< Indicates whether the allocation is currently in use.
+  itl::size_t size; ///< The size of the allocated memory, in bytes.
+  void* ptr; ///< A pointer to the allocated memory.
+} AllocationMetadata;
+
+/**
  * @brief Allocates a block of memory of the specified size.
  *
  * @param size The size of the memory block to allocate, in bytes.
