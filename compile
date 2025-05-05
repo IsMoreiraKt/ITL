@@ -38,13 +38,25 @@ function mountAssembly()
   done
 }
 
+function compile()
+{
+  g++ -I"$INCLUDE_DIRECTORY" \
+    -nostdlib -nostdinc -fno-exceptions -fno-rtti -nodefaultlibs -fno-builtin \
+    $CPP_FILES $ASSEMBLY_OBJECTS -o itl
+
+  mv itl "$build_dir"
+}
+
 function main()
 {
   mkdir -p "$BUILD_DIRECTORY"
   
   getUserArch
+
   getAssemblyScripts
   mountAssembly
+
+  compile
 }
 
 
