@@ -19,6 +19,11 @@ function getUserArch()
   esac
 }
 
+function getAssemblyScripts()
+{
+  ASSEMBLY_FILES=$(find arch/"$USER_ARCHITECTURE" -type f -name "*.S")
+}
+
 function main()
 {
   mkdir -p "$BUILD_DIRECTORY"
