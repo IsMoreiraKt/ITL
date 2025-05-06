@@ -8,15 +8,22 @@
  * specific to Linux systems.
  *
  * @author Ismael Moreira
- * @date 05.05.2025
+ * @date 05.06.2025
  */
 #ifndef _ITL_SYSTEM_MEMORY_MACROS_HPP
 #define _ITL_SYSTEM_MEMORY_MACROS_HPP
 
+#include "system/kernelTypes.hpp"
+
 namespace itl {
-extern "C" {
-#ifdef __linux__
 namespace linux {
+    extern "C" {
+#ifdef __linux__
+// Page-related macros
+#define PAGE_SHIFT 13 ///< Number of bits to shift for page size.
+#define PAGE_SIZE _BITUL(PAGE_SHIFT) ///< Size of a memory page in bytes.
+#define PAGE_MASK (~(PAGE_SIZE - 1)) ///< Mask to align addresses to page boundaries.
+
 // Memory protection flags
 #define PROT_READ 0x1 ///< Pages can be read.
 #define PROT_WRITE 0x2 ///< Pages can be written.
@@ -27,6 +34,7 @@ namespace linux {
 #define PROT_GROWSUP 0x02000000 ///< Extend change to end of mmap for stacks.
 
 // Memory mapping flags
+#define MAP_FAILED ((void*)-1) ///< Indicates that mmap failed.
 #define MAP_SHARED 0x01 ///< Share changes.
 #define MAP_PRIVATE 0x02 ///< Changes are private to the process.
 #define MAP_SHARED_VALIDATE 0x03 ///< Share changes with validation.
@@ -88,9 +96,9 @@ namespace linux {
 #define PKEY_DISABLE_ACCESS 0x1 ///< Disable access to the memory.
 #define PKEY_DISABLE_WRITE 0x2 ///< Disable write access to the memory.
 #define PKEY_ACCESS_MASK (PKEY_DISABLE_ACCESS | PKEY_DISABLE_WRITE) ///< Mask for access restrictions.
-}; // namespace linux
 #endif // __linux__
-}; // extern "C"
+    }; // extern "C"
+}; // namespace linux
 }; // namespace itl
 
 #endif // _ITL_SYSTEM_MEMORY_MACROS_HPP
