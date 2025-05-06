@@ -29,6 +29,15 @@ typedef unsigned long size_t;
  * @brief Signed integer type for representing sizes or counts.
  */
 typedef signed long ssize_t;
+
+/**
+ * @def NULL
+ * @brief Macro representing a null pointer.
+ *
+ * This macro is defined as ((void*)0) and is used to represent a null pointer
+ * in C-style programming.
+ */
+#define NULL ((void*)0)
 } // namespace itl
 
 #endif // _ITL_TYPING_C_TYPES_HPP
