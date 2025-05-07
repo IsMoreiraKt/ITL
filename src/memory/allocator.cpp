@@ -51,4 +51,59 @@ static itl::size_t __internal_normalizeSize(itl::size_t size, itl::size_t base)
 
     return (size + base - 1) & ~(base - 1);
 }
+
+/**
+ * @brief Searches for available memory blocks that can fit the requested size.
+ *
+ * This function iterates through the internal memory map to find a block
+ * that can accommodate the requested size. If no suitable block is found,
+ * it returns an empty result.
+ *
+ * @param size The size of the memory block to search for, in bytes.
+ * @return An AllocationResult structure containing the search result.
+ */
+static itl::AllocationResult __internal_searchAvailableBlocks(itl::size_t size)
+{
+    itl::size_t normalizedSize = itl::__internal_normalizeSize(size, MIN_CHUNK_SIZE);
+
+    for (itl::size_t _block = 0; _block < internalMemoryMap.blockCount; ++_block) {
+        MemoryBlock* block = internalMemoryMap.blocks[_block];
+        itl::size_t accumulated = 0;
+        itl::size_t startChunk = 0;
+        bool inRun = false;
+
+        for (itl::size_t iterator = 0; iterator < block->totalChunks; ++iterator) {
+            AllocationMetadata* meta = block->slots[iterator];
+            bool free = (meta == nullptr || !meta->used);
+            itl::size_t chunkSize = block->chunkSize;
+
+            if (free) {
+                if (!inRun) {
+                    startChunk = iterator;
+                    accumulated = 0;
+                    inRun = true;
+                }
+
+                accumulated += chunkSize;
+
+                if (accumulated >= normalizedSize) {
+                    return (AllocationResult) {
+                        .block = block,
+                        .offset = startChunk * chunkSize,
+                        .found = true
+                    };
+                }
+            } else {
+                inRun = false;
+                accumulated = 0;
+            }
+        }
+    }
+
+    return (AllocationResult) {
+        .block = nullptr,
+        .offset = 0,
+        .found = false
+    };
+}
 } // namespace itl
