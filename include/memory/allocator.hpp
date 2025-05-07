@@ -22,8 +22,9 @@
  */
 namespace itl {
 #define MAX_CHUNKS 4096 ///< Maximum number of chunks per memory block.
-#define MAX_BLOCKS 33554432 ///< Maximum number of memory blocks in the memory map.
+#define MAX_BLOCKS 4096 ///< Maximum number of memory blocks in the memory map.
 #define MIN_PAGE_SIZE 4096 ///< Minimum size of a memory page.
+#define MIN_CHUNK_SIZE 8 ///< Minimum size of a memory chunk.
 
 /**
  * @struct AllocationMetadata
@@ -36,7 +37,7 @@ typedef struct {
     bool used; ///< Indicates whether the allocation is currently in use.
     itl::size_t startPosition; ///< Start position of the memory page.
     itl::size_t size; ///< The size of the allocated memory, in bytes.
-    void* ptr; ///< A pointer to the allocated memory.
+    void* pointerToAllocatedMemory; ///< A pointer to the allocated memory.
 } AllocationMetadata;
 
 /**
@@ -50,8 +51,7 @@ typedef struct {
     void* base; ///< Base address of the memory block.
     itl::size_t chunkSize; ///< Size of each chunk in the block, in bytes.
     itl::size_t totalChunks; ///< Total number of chunks in the block.
-    AllocationMetadata slots[MAX_CHUNKS]; ///< Metadata for each chunk.
-    MemoryBlock* next; ///< Pointer to the next memory block in the chain.
+    itl::AllocationMetadata* slots[MAX_CHUNKS]; ///< Metadata for each chunk.
 } MemoryBlock;
 
 /**
@@ -61,9 +61,22 @@ typedef struct {
  * The memory map tracks multiple memory blocks and their count.
  */
 typedef struct {
-    MemoryBlock* blocks[MAX_BLOCKS]; ///< Array of pointers to memory blocks.
-    size_t blockCount; ///< Number of memory blocks currently in use.
+    itl::MemoryBlock* blocks[MAX_BLOCKS]; ///< Array of pointers to memory blocks.
+    itl::size_t blockCount; ///< Number of memory blocks currently in use.
 } MemoryMap;
+
+/**
+ * @struct AllocationResult
+ * @brief Represents the result of a memory allocation search.
+ *
+ * This structure contains information about the block, offset, and
+ * whether a suitable allocation was found.
+ */
+typedef struct {
+    itl::MemoryBlock* block; ///< Pointer to the memory block where the allocation was found.
+    itl::size_t offset; ///< Offset within the block where the allocation starts.
+    bool found; ///< Indicates whether a suitable allocation was found.
+} AllocationResult;
 
 /**
  * @brief Allocates a block of memory of the specified size.
