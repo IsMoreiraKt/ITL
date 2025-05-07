@@ -7,7 +7,7 @@
  * commonly used in low-level kernel programming. These macros are designed
  * to simplify the definition of constants and bit manipulation.
  *
- * @author Ismael Moreira
+ * @author Ismael Moreira <ismaelmoreirakt@gmail.com>
  * @date 05.06.2025
  */
 #ifndef _ITL_SYSTEM_KERNEL_TYPES_HPP

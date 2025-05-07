@@ -7,7 +7,7 @@
  * flags used in system calls such as mmap and munmap. These macros are
  * specific to Linux systems.
  *
- * @author Ismael Moreira
+ * @author Ismael Moreira <ismaelmoreirakt@gmail.com>
  * @date 05.06.2025
  */
 #ifndef _ITL_SYSTEM_MEMORY_MACROS_HPP

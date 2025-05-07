@@ -8,7 +8,7 @@
  *
  * @note These functions are only available on Linux systems.
  *
- * @author Ismael Moreira
+ * @author Ismael Moreira <ismaelmoreirakt@gmail.com>
  * @date 05.05.2025
  */
 #ifndef _ITL_SYSTEM_SYSCALLS_HPP
