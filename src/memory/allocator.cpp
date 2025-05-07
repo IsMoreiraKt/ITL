@@ -106,4 +106,47 @@ static itl::AllocationResult __internal_searchAvailableBlocks(itl::size_t size)
         .found = false
     };
 }
+
+/**
+ * @brief Allocates a block of memory using system calls.
+ *
+ * This function is used internally by the allocator to request memory
+ * from the operating system.
+ *
+ * @param size The size of the memory block to allocate, in bytes.
+ * @return A pointer to the allocated memory block, or nullptr if
+ * the allocation fails.
+ */
+static void* __internal_alloc(itl::size_t size)
+{
+    void* pointerToAllocatedMemory;
+    itl::size_t temporarySize = __internal_normalizeSize(size, PAGE_SIZE);
+
+#ifdef __x86_64__
+    pointerToAllocatedMemory = itl::linux::syscall::mmap(
+        0, ///< address
+        temporarySize, ///< length
+        PROT_READ | PROT_WRITE, ///< protection
+        MAP_PRIVATE | MAP_ANONYMOUS, ///< flags
+        -1, ///< fileDescriptor
+        0 ///< offset
+    );
+#elif __i386__
+    itl::linux::syscall::mmap_arg_struct arguments = {
+        .address = 0,
+        .length = temporarySize,
+        .protection = PROT_READ | PROT_WRITE,
+        .flags = MAP_PRIVATE | MAP_ANONYMOUS,
+        .fileDescriptor = -1,
+        .offset = 0
+    };
+
+    pointerToAllocatedMemory = itl::linux::syscall::mmap(arguments);
+#endif
+
+    if (pointerToAllocatedMemory == MAP_FAILED)
+        return NULL;
+
+    return pointerToAllocatedMemory;
+}
 } // namespace itl
