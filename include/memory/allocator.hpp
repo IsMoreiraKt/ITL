@@ -7,7 +7,7 @@
  * management, including allocation, aligned allocation, reallocation,
  * and deallocation.
  *
- * @author Ismael Moreira
+ * @author Ismael Moreira <ismaelmoreirakt@gmail.com>
  * @date 05.05.2025
  */
 #ifndef _ITL_MEMORY_ALLOCATOR_HPP
@@ -51,7 +51,7 @@ typedef struct {
     void* base; ///< Base address of the memory block.
     itl::size_t chunkSize; ///< Size of each chunk in the block, in bytes.
     itl::size_t totalChunks; ///< Total number of chunks in the block.
-    itl::AllocationMetadata* slots[MAX_CHUNKS]; ///< Metadata for each chunk.
+    itl::AllocationMetadata* chunks[MAX_CHUNKS]; ///< Metadata for each chunk.
 } MemoryBlock;
 
 /**
@@ -66,7 +66,7 @@ typedef struct {
 } MemoryMap;
 
 /**
- * @struct AllocationResult
+ * @struct AllocationSearch
  * @brief Represents the result of a memory allocation search.
  *
  * This structure contains information about the block, offset, and
@@ -74,9 +74,9 @@ typedef struct {
  */
 typedef struct {
     itl::MemoryBlock* block; ///< Pointer to the memory block where the allocation was found.
-    itl::size_t offset; ///< Offset within the block where the allocation starts.
+    itl::size_t index; ///< Index in the list of chunks of the block.
     bool found; ///< Indicates whether a suitable allocation was found.
-} AllocationResult;
+} AllocationSearch;
 
 /**
  * @brief Allocates a block of memory of the specified size.
