@@ -14,6 +14,8 @@
 #ifndef _ITL_DEBUG_ERRNO_HPP
 #define _ITL_DEBUG_ERRNO_HPP
 
+#include "typing/ctypes.hpp"
+
 /**
  * @namespace itl
  * @brief A general-purpose namespace for the ITL library, containing
@@ -66,7 +68,7 @@ constexpr const char* _error_description[34] = {
     "File exists.", ///< EEXIST
     "Cross-device link.", ///< EXDEV
     "No such device.", ///< ENODEV
-    "Not a directory.", ///< ENOTFIR
+    "Not a directory.", ///< ENOTDIR
     "Is a directory.", ///< EISDIR
     "Invalid argument.", ///< EINVAL
     "File table overflow.", ///< ENFILE
