@@ -59,6 +59,24 @@ namespace __internal {
                 itl::u32 file_descriptor,
                 itl::char_ptr buffer,
                 itl::size_t count);
+
+            /**
+             * @brief Writes data from a buffer to a file descriptor.
+             *
+             * This function is a wrapper for the  write  system call on
+             * x86_64 systems.
+             *
+             * @param file_descriptor The file descriptor to write to.
+             * @param buffer A pointer to the buffer containing the data
+             * to write.
+             * @param count The number of bytes to write.
+             * @return The number of bytes written on success, or a
+             * negative value on error.
+             */
+            itl::ssize_t sys_write(
+                itl::u32 file_descriptor,
+                itl::cstring buffer,
+                itl::size_t count);
 #else /// i386 architecture
 #endif /// __x86_64__
             } /// extern "C"
