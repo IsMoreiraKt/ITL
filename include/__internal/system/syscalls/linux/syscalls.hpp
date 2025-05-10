@@ -145,6 +145,26 @@ namespace __internal {
                 itl::cstring filename,
                 itl::__internal::system::linux::__stat* stat_buffer);
 
+            /**
+             * @brief Waits for events on multiple file descriptors.
+             *
+             * @param file_descriptors_array A pointer to an array of
+             * __pollfd structures, each representing a file descriptor and
+             * the events to monitor.
+             * @param file_descriptors_count The number of elements in
+             * the file_descriptors_array.
+             * @param timeout The time in milliseconds to wait for an event.
+             * A value of -1 causes the call to block indefinitely, 0
+             * returns immediately, and any positive value specifies the
+             * maximum wait time.
+             * @return The number of file descriptors with events,
+             * 0 on timeout, or a negative value on error.
+             */
+            itl::i32 sys_pool(
+                itl::__internal::system::linux::__pollfd* file_descriptors_array,
+                itl::u32 file_descriptors_count,
+                itl::i32 timeout);
+
 #else /// i386 architecture
 
 #endif /// __x86_64__
