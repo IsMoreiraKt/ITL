@@ -185,6 +185,32 @@ namespace __internal {
                 itl::__internal::system::linux::off_t offset,
                 itl::u32 whence);
 
+            /**
+             * @brief Maps files or anonymous memory into the process address space.
+             *
+             * @param address The preferred starting address for the mapping.
+             * If zero, the kernel chooses the address.
+             * @param length The number of bytes to map.
+             * Must be greater than zero.
+             * @param protection Memory protection flags
+             * (e.g., read, write, execute).
+             * @param flags Mapping flags controlling the nature of the
+             * mapping (e.g., shared, private, anonymous).
+             * @param file_descriptor The file descriptor to map.
+             * Ignored if the mapping is anonymous.
+             * @param offset The offset in the file where the mapping starts.
+             * Must be aligned to the system page size.
+             * @return The starting address of the mapped region on success,
+             * or a value in the range -4095 to -1 on error.
+             */
+            itl::u64 sys_mmap(
+                itl::u64 address,
+                itl::u64 length,
+                itl::u64 protection,
+                itl::u64 flags,
+                itl::u64 file_descriptor,
+                itl::u64 offset);
+
 #else /// i386 architecture
 
 #endif /// __x86_64__
