@@ -1,6 +1,6 @@
 /**
  * @file src/debug/errno.cpp
- * @brief Implements the thread-local `errno` variable for error handling.
+ * @brief Implements the thread-local errno variable for error handling.
  * @category Error Handling
  *
  * This file provides the definition of the thread-local errno variable,

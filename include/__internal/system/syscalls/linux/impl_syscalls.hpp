@@ -44,13 +44,15 @@ namespace __internal {
             /**
              * @brief Reads data from a file descriptor into a buffer.
              *
-             * This function implements the `read` system call for Linux. It uses
-             * the `__SysArguments` structure to pass arguments to the kernel in
-             * a platform-specific manner.
+             * This function implements the read system call for Linux.
+             * It uses the __SysArguments structure to pass arguments to
+             * the kernel in a platform-specific manner.
              *
-             * @param arguments A pointer to a `__SysArguments` structure containing
-             * the file descriptor, buffer, and size of the data to read.
-             * @return The number of bytes read on success, or a negative value on error.
+             * @param arguments A pointer to a __SysArguments structure
+             * containing the file descriptor, buffer, and size of the data
+             * to read.
+             * @return The number of bytes read on success, or a negative
+             * value on error.
              */
             itl::ssize_t sys_read(itl::__internal::system::__SysArguments* arguments);
         } /// namespace linux
