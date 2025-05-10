@@ -1,5 +1,5 @@
 /**
- * @file include/__internal/system/syscalls/linux/syscalls.hpp
+ * @file include/__internal/system/syscalls/linux/extern_syscalls.hpp
  * @brief Defines system call wrappers for Linux.
  * @category System Interaction
  *
@@ -13,8 +13,8 @@
  * @author Ismael Moreira <ismaelmoreirakt@gmail.com>
  * @date May 10th, 2025
  */
-#ifndef _ITL__INTERNAL__SYSTEM__SYSCALLS__LINUX__SYSCALLS_HPP
-#define _ITL__INTERNAL__SYSTEM__SYSCALLS__LINUX__SYSCALLS_HPP
+#ifndef _ITL__INTERNAL__SYSTEM__SYSCALLS__LINUX__EXTERN_SYSCALLS_HPP
+#define _ITL__INTERNAL__SYSTEM__SYSCALLS__LINUX__EXTERN_SYSCALLS_HPP
 
 #include "__internal/system/syscalls/linux/linux_types.hpp"
 #include "typing/ctypes.hpp"
@@ -53,7 +53,7 @@ namespace __internal {
              * @return The number of bytes read on success, or a negative
              * value on error.
              */
-            itl::u64 sys_read(
+            itl::u64 __read(
                 itl::u32 file_descriptor,
                 itl::char_ptr buffer,
                 itl::size_t count);
@@ -68,7 +68,7 @@ namespace __internal {
              * @return The number of bytes written on success, or a
              * negative value on error.
              */
-            itl::ssize_t sys_write(
+            itl::ssize_t __write(
                 itl::u32 file_descriptor,
                 itl::cstring buffer,
                 itl::size_t count);
@@ -83,7 +83,7 @@ namespace __internal {
              * @return The file descriptor on success, or a negative value
              * on error.
              */
-            itl::i64 sys_open(
+            itl::i64 __open(
                 itl::cstring filename,
                 itl::i32 flags,
                 itl::__internal::system::linux::umode_t mode);
@@ -94,7 +94,7 @@ namespace __internal {
              * @param file_descriptor The file descriptor to close.
              * @return 0 on success, or a negative value on error.
              */
-            itl::i32 sys_close(itl::u32 file_descriptor);
+            itl::i32 __close(itl::u32 file_descriptor);
 
             /**
              * @brief Retrieves file status information.
@@ -107,7 +107,7 @@ namespace __internal {
              * size, and timestamps.
              * @return 0 on success, or a negative value on error.
              */
-            itl::i32 sys_newstat(
+            itl::i32 __newstat(
                 itl::cstring filename,
                 itl::__internal::system::linux::__stat* stat_buffer);
 
@@ -125,7 +125,7 @@ namespace __internal {
              * size, and timestamps.
              * @return 0 on success, or a negative value on error.
              */
-            itl::i32 sys_newfstat(
+            itl::i32 __newfstat(
                 itl::u32 file_descriptor,
                 itl::__internal::system::linux::__stat* stat_buffer);
 
@@ -141,7 +141,7 @@ namespace __internal {
              * size, and timestamps.
              * @return 0 on success, or a negative value on error.
              */
-            itl::i32 sys_newlstat(
+            itl::i32 __newlstat(
                 itl::cstring filename,
                 itl::__internal::system::linux::__stat* stat_buffer);
 
@@ -160,7 +160,7 @@ namespace __internal {
              * @return The number of file descriptors with events,
              * 0 on timeout, or a negative value on error.
              */
-            itl::i32 sys_pool(
+            itl::i32 __pool(
                 itl::__internal::system::linux::__pollfd* file_descriptors_array,
                 itl::u32 file_descriptors_count,
                 itl::i32 timeout);
@@ -180,7 +180,7 @@ namespace __internal {
              * @return The resulting offset from the beginning of the file
              * on success, or a negative value on error.
              */
-            itl::__internal::system::linux::off_t sys_lseek(
+            itl::__internal::system::linux::off_t __lseek(
                 itl::u32 file_descriptor,
                 itl::__internal::system::linux::off_t offset,
                 itl::u32 whence);
@@ -203,7 +203,7 @@ namespace __internal {
              * @return The starting address of the mapped region on success,
              * or a value in the range -4095 to -1 on error.
              */
-            itl::u64 sys_mmap(
+            itl::u64 __mmap(
                 itl::u64 address,
                 itl::u64 length,
                 itl::u64 protection,
@@ -222,7 +222,7 @@ namespace __internal {
              * (e.g., read, write, execute).
              * @return 0 on success, or a negative value on error.
              */
-            itl::i32 sys_mprotect(
+            itl::i32 __mprotect(
                 itl::u64 start,
                 itl::size_t length,
                 itl::u64 protection);
@@ -237,4 +237,4 @@ namespace __internal {
 } /// namespace __internal
 } /// namespace itl
 
-#endif /// _ITL__INTERNAL__SYSTEM__SYSCALLS__LINUX__SYSCALLS_HPP
+#endif /// _ITL__INTERNAL__SYSTEM__SYSCALLS__LINUX__EXTERN_SYSCALLS_HPP
