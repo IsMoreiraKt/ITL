@@ -57,7 +57,7 @@ namespace __internal {
                 SYS_ARG3(
                     arguments,
                     itl::u32, file_descriptor,
-                    itl::cstring, buffer,
+                    itl::char_ptr, buffer,
                     itl::size_t, count)
                 itl::ssize_t syscall_return = itl::__internal::system::linux::__read(
                     file_descriptor, buffer, count);
