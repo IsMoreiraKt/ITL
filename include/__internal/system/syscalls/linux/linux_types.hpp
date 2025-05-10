@@ -13,6 +13,8 @@
 #ifndef _ITL__INTERNAL__SYSTEM__SYSCALLS__LINUX__LINUX_TYPES_HPP
 #define _ITL__INTERNAL__SYSTEM__SYSCALLS__LINUX__LINUX_TYPES_HPP
 
+#include "typing/ctypes.hpp"
+
 /**
  * @namespace itl
  * @brief A general-purpose namespace for the ITL library, containing
@@ -42,6 +44,65 @@ namespace __internal {
              * in Linux system calls. It is defined as an unsigned short.
              */
             typedef unsigned short umode_t;
+
+#if defined __x86_64__
+            /**
+             * @struct __stat
+             * @brief Represents file status information for x86_64 systems.
+             *
+             * This structure is used to store metadata about files, such as
+             * device ID, inode number, file size, and timestamps.
+             */
+            typedef struct {
+                itl::u64 device_id; ///< The ID of the device containing the file.
+                itl::u64 inode_number; ///< The inode number of the file.
+                itl::u64 links_count; ///< The number of hard links to the file.
+                itl::u32 mode; ///< The file mode (permissions and type).
+                itl::u32 user_id; ///< The user ID of the file owner.
+                itl::u32 group_id; ///< The group ID of the file owner.
+                itl::u32 reserved_0; ///< Reserved for future use.
+                itl::u64 real_device_id; ///< The ID of the device where the file resides.
+                itl::i64 size; ///< The size of the file in bytes.
+                itl::i64 block_size; ///< The block size for filesystem I/O.
+                itl::i64 number_blocks; ///< The number of blocks allocated to the file.
+                itl::u64 last_access_time; ///< The last access time (seconds since epoch).
+                itl::u64 last_access_time_nsec; ///< Nanoseconds of the last access time.
+                itl::u64 last_modification_time; ///< The last modification time (seconds since epoch).
+                itl::u64 last_modification_time_nsec; ///< Nanoseconds of the last modification time.
+                itl::u64 last_status_change_time; ///< The last status change time (seconds since epoch).
+                itl::u64 last_status_change_time_nsec; ///< Nanoseconds of the last status change time.
+                itl::i64 reserved_for_future_use[3]; ///< Reserved fields for future use.
+            } __stat;
+
+#else /// i386 architecture
+            /**
+             * @struct __stat
+             * @brief Represents file status information for i386 systems.
+             *
+             * This structure is used to store metadata about files, such as
+             * device ID, inode number, file size, and timestamps.
+             */
+            typedef struct {
+                itl::u64 device_id; ///< The ID of the device containing the file.
+                itl::u64 inode_number; ///< The inode number of the file.
+                itl::u16 mode; ///< The file mode (permissions and type).
+                itl::u16 links_count; ///< The number of hard links to the file.
+                itl::u16 user_id; ///< The user ID of the file owner.
+                itl::u16 group_id; ///< The group ID of the file owner.
+                itl::u64 real_device; ///< The ID of the device where the file resides.
+                itl::u64 size; ///< The size of the file in bytes.
+                itl::u64 block_size; ///< The block size for filesystem I/O.
+                itl::u64 number_blocks; ///< The number of blocks allocated to the file.
+                itl::u64 last_access; ///< The last access time (seconds since epoch).
+                itl::u64 last_access_nanoseconds; ///< Nanoseconds of the last access time.
+                itl::u64 last_modification; ///< The last modification time (seconds since epoch).
+                itl::u64 last_modification_nanoseconds; ///< Nanoseconds of the last modification time.
+                itl::u64 last_status_change; ///< The last status change time (seconds since epoch).
+                itl::u64 last_status_change_nanoseconds; ///< Nanoseconds of the last status change time.
+                itl::u64 reserved_for_future_use_4; ///< Reserved fields for future use.
+                itl::u64 reserved_for_future_use_5; ///< Reserved fields for future use.
+            } __stat;
+#endif /// defined __x86_64__
         } /// namespace linux
     } /// namespace system
 } /// namespace __internal
