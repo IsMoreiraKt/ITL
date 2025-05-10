@@ -53,7 +53,7 @@ namespace __internal {
              * @return The number of bytes read on success, or a negative
              * value on error.
              */
-            itl::u64 __read(
+            itl::ssize_t __read(
                 itl::u32 file_descriptor,
                 itl::char_ptr buffer,
                 itl::size_t count);
