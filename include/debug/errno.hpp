@@ -31,6 +31,16 @@ namespace itl {
 extern __thread int errno;
 
 /**
+ * @brief Returns a human-readable description of an error code.
+ *
+ * This function maps an error code (stored in errno) to a string
+ * describing the error. It is useful for debugging and logging purposes.
+ *
+ * @return A constant string containing the description of the error.
+ */
+itl::cstring errno_str(void);
+
+/**
  * @brief Array of human-readable error descriptions.
  *
  * This array maps error codes to their corresponding human-readable
