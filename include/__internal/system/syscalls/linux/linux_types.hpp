@@ -43,7 +43,21 @@ namespace __internal {
              * This type is used to represent file modes and permissions
              * in Linux system calls. It is defined as an unsigned short.
              */
-            typedef unsigned short umode_t;
+            typedef itl::u16 umode_t;
+
+            /**
+             * @typedef pollfd
+             * @brief Represents a poll file descriptor structure.
+             *
+             * This structure is used in system calls like poll to monitor
+             * multiple file descriptors for events such as readiness for
+             * reading or writing.
+             */
+            typedef struct {
+                itl::i32 file_descriptor; ///< The file descriptor to monitor.
+                itl::i16 events; ///< The events to monitor (e.g., POLLIN, POLLOUT).
+                itl::i16 revents; ///< The events that occurred (set by the kernel).
+            } __pollfd;
 
 #if defined __x86_64__
             /**
