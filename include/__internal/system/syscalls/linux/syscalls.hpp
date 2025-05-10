@@ -45,9 +45,6 @@ namespace __internal {
             /**
              * @brief Reads data from a file descriptor into a buffer.
              *
-             * This function is a wrapper for the  read  system call on
-             * x86_64 systems.
-             *
              * @param file_descriptor The file descriptor to read from.
              * @param buffer A pointer to the buffer where the read data
              * will be stored.
@@ -62,9 +59,6 @@ namespace __internal {
 
             /**
              * @brief Writes data from a buffer to a file descriptor.
-             *
-             * This function is a wrapper for the  write  system call on
-             * x86_64 systems.
              *
              * @param file_descriptor The file descriptor to write to.
              * @param buffer A pointer to the buffer containing the data
@@ -81,9 +75,6 @@ namespace __internal {
             /**
              * @brief Opens a file and returns a file descriptor.
              *
-             * This function is a wrapper for the open system call on
-             * x86_64 systems.
-             *
              * @param filename A pointer to the path of the file to open.
              * @param flags The flags for opening the file
              * (e.g., read, write).
@@ -99,11 +90,6 @@ namespace __internal {
             /**
              * @brief Closes an open file descriptor.
              *
-             * This function is a wrapper for the close system call on
-             * x86_64 systems. It releases the file descriptor, making it
-             * available for reuse. After calling this function, the file
-             * descriptor should not be used unless reopened.
-             *
              * @param file_descriptor The file descriptor to close.
              * @return 0 on success, or a negative value on error.
              */
@@ -112,22 +98,34 @@ namespace __internal {
             /**
              * @brief Retrieves file status information.
              *
-             * This function is a wrapper for the stat system call on
-             * x86_64 systems. It retrieves detailed information about a
-             * file specified by its path, such as file size, permissions,
-             * and modification times, and stores the information in the
-             * provided stat_buffer.
-             *
              * @param filename A pointer to the path of the file to retrieve
              * status information for.
-             * @param stat_buffer A pointer to a structure of type __stat 
+             * @param stat_buffer A pointer to a structure of type __stat
              * where the file status information will be stored.
              * The structure will be populated with data such as file type,
              * size, and timestamps.
              * @return 0 on success, or a negative value on error.
              */
-            itl::i32 newstat(
+            itl::i32 sys_newstat(
                 itl::cstring filename,
+                itl::__internal::system::linux::__stat* stat_buffer);
+
+            /**
+             * @brief Retrieves file status information for an open
+             * file descriptor.
+             *
+             * @param file_descriptor The file descriptor of the open file
+             * to retrieve status information for. This descriptor should
+             * be obtained from a prior call to sys_open or similar system
+             * calls.
+             * @param stat_buffer A pointer to a structure of type __stat
+             * where the file status information will be stored.
+             * The structure will be populated with data such as file type,
+             * size, and timestamps.
+             * @return 0 on success, or a negative value on error.
+             */
+            itl::i32 sys_newfstat(
+                itl::u32 file_descriptor,
                 itl::__internal::system::linux::__stat* stat_buffer);
 
 #else /// i386 architecture
