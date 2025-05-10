@@ -95,6 +95,19 @@ namespace __internal {
                 itl::cstring filename,
                 itl::i32 flags,
                 itl::__internal::system::linux::umode_t mode);
+
+            /**
+             * @brief Closes an open file descriptor.
+             *
+             * This function is a wrapper for the close system call on
+             * x86_64 systems. It releases the file descriptor, making it
+             * available for reuse. After calling this function, the file
+             * descriptor should not be used unless reopened.
+             *
+             * @param file_descriptor The file descriptor to close.
+             * @return 0 on success, or a negative value on error.
+             */
+            itl::i32 sys_close(itl::u32 file_descriptor);
 #else /// i386 architecture
 #endif /// __x86_64__
             } /// extern "C"
