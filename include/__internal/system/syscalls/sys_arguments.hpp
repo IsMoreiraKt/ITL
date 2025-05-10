@@ -10,7 +10,7 @@
  * These structures are used to standardize the way arguments are passed
  * to system calls, ensuring compatibility across different platforms.
  *
- * @author Ismael Moreira
+ * @author Ismael Moreira <ismaelmoreirakt@gmail.com>
  * @date May 10th, 2025
  */
 #ifndef _ITL__INTERNAL__SYSTEM__SYSCALLS__SYS_ARGUMENTS_HPP
