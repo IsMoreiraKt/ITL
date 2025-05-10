@@ -7,7 +7,7 @@
  * within the itl namespace.
  *
  * @author Ismael Moreira <ismaelmoreirakt@gmail.com>
- * @date 05.05.2025
+ * @date May 5th, 2025
  */
 #ifndef _ITL_TYPING_C_TYPES_HPP
 #define _ITL_TYPING_C_TYPES_HPP
@@ -43,6 +43,54 @@ typedef signed long intptr_t;
  */
 typedef unsigned long uintptr_t;
 
+/**
+ * @typedef i8
+ * @brief Signed 8-bit integer type.
+ */
+typedef char i8;
+
+/**
+ * @typedef i16
+ * @brief Signed 16-bit integer type.
+ */
+typedef short i16;
+
+/**
+ * @typedef i32
+ * @brief Signed 32-bit integer type.
+ */
+typedef int i32;
+
+/**
+ * @typedef i64
+ * @brief Signed 64-bit integer type.
+ */
+typedef long i64;
+
+/**
+ * @typedef u8
+ * @brief Unsigned 8-bit integer type.
+ */
+typedef unsigned char u8;
+
+/**
+ * @typedef u16
+ * @brief Unsigned 16-bit integer type.
+ */
+typedef unsigned short u16;
+
+/**
+ * @typedef u32
+ * @brief Unsigned 32-bit integer type.
+ */
+typedef unsigned int u32;
+
+/**
+ * @typedef u64
+ * @brief Unsigned 64-bit integer type.
+ */
+typedef unsigned long u64;
+
 #elif defined(__i386__)
 /**
  * @typedef size_t
@@ -67,7 +115,69 @@ typedef signed int intptr_t;
  * @brief Unsigned integer type capable of holding a pointer (32-bit).
  */
 typedef unsigned int uintptr_t;
+
+/**
+ * @typedef i8
+ * @brief Signed 8-bit integer type.
+ */
+typedef char i8;
+
+/**
+ * @typedef i16
+ * @brief Signed 16-bit integer type.
+ */
+typedef short i16;
+
+/**
+ * @typedef i32
+ * @brief Signed 32-bit integer type.
+ */
+typedef int i32;
+
+/**
+ * @typedef i64
+ * @brief Signed 64-bit integer type.
+ */
+typedef long long i64;
+
+/**
+ * @typedef u8
+ * @brief Unsigned 8-bit integer type.
+ */
+typedef unsigned char u8;
+
+/**
+ * @typedef u16
+ * @brief Unsigned 16-bit integer type.
+ */
+typedef unsigned short u16;
+
+/**
+ * @typedef u32
+ * @brief Unsigned 32-bit integer type.
+ */
+typedef unsigned int u32;
+
+/**
+ * @typedef u64
+ * @brief Unsigned 64-bit integer type.
+ */
+typedef unsigned long long u64;
 #endif // __i386__
+
+#ifdef __INTPTR_TYPE__
+/**
+ * @typedef address_t
+ * @brief Unsigned integer type for representing memory addresses.
+ */
+typedef __INTPTR_TYPE__ address_t;
+#else
+/**
+ * @typedef address_t
+ * @brief Unsigned integer type for representing memory addresses.
+ */
+typedef itl::size_t address_t;
+#endif // __INTPTR_TYPE__
 
 /**
  * @typedef char_ptr
