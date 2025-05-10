@@ -46,6 +46,12 @@ namespace __internal {
             typedef itl::u16 umode_t;
 
             /**
+             * @typedef off_t
+             * @brief Represents a file offset type.
+             */
+            typedef itl::i64 off_t;
+
+            /**
              * @typedef pollfd
              * @brief Represents a poll file descriptor structure.
              *
