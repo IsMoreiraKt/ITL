@@ -165,6 +165,26 @@ namespace __internal {
                 itl::u32 file_descriptors_count,
                 itl::i32 timeout);
 
+            /**
+             * @brief Repositions the offset of an open file descriptor.
+             *
+             * @param file_descriptor The file descriptor of the open file
+             * whose offset is to be modified.
+             * @param offset The number of bytes to offset, relative to
+             * the position specified by the whence argument.
+             * @param whence The reference point for the offset.
+             * It must be one of:
+             *    0 (beginning of file),
+             *    1 (current position),
+             *    2 (end of file).
+             * @return The resulting offset from the beginning of the file
+             * on success, or a negative value on error.
+             */
+            itl::__internal::system::linux::off_t sys_lseek(
+                itl::u32 file_descriptor,
+                itl::__internal::system::linux::off_t offset,
+                itl::u32 whence);
+
 #else /// i386 architecture
 
 #endif /// __x86_64__
