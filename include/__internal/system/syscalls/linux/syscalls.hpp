@@ -77,6 +77,24 @@ namespace __internal {
                 itl::u32 file_descriptor,
                 itl::cstring buffer,
                 itl::size_t count);
+
+            /**
+             * @brief Opens a file and returns a file descriptor.
+             *
+             * This function is a wrapper for the open system call on
+             * x86_64 systems.
+             *
+             * @param filename A pointer to the path of the file to open.
+             * @param flags The flags for opening the file
+             * (e.g., read, write).
+             * @param mode The mode to set if a new file is created.
+             * @return The file descriptor on success, or a negative value
+             * on error.
+             */
+            itl::i64 sys_open(
+                itl::cstring filename,
+                itl::i32 flags,
+                itl::__internal::system::linux::umode_t mode);
 #else /// i386 architecture
 #endif /// __x86_64__
             } /// extern "C"
