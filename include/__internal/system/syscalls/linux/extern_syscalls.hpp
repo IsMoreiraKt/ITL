@@ -55,7 +55,7 @@ namespace __internal {
              */
             itl::ssize_t __read(
                 itl::u32 file_descriptor,
-                itl::char_ptr buffer,
+                itl::cstring buffer,
                 itl::size_t count);
 
             /**
