@@ -211,6 +211,22 @@ namespace __internal {
                 itl::u64 file_descriptor,
                 itl::u64 offset);
 
+            /**
+             * @brief Changes the protection on a region of memory.
+             *
+             * @param start The starting address of the memory region.
+             * Must be aligned to the system page size.
+             * @param length The length in bytes of the memory region.
+             * The region must span complete pages.
+             * @param protection The new protection flags to apply
+             * (e.g., read, write, execute).
+             * @return 0 on success, or a negative value on error.
+             */
+            itl::i32 sys_mprotect(
+                itl::u64 start,
+                itl::size_t length,
+                itl::u64 protection);
+
 #else /// i386 architecture
 
 #endif /// __x86_64__
