@@ -41,6 +41,7 @@ namespace __internal {
          */
         namespace linux {
             extern "C" {
+
 #if defined __x86_64__
             /**
              * @brief Reads data from a file descriptor into a buffer.
@@ -128,8 +129,26 @@ namespace __internal {
                 itl::u32 file_descriptor,
                 itl::__internal::system::linux::__stat* stat_buffer);
 
+            /**
+             * @brief Retrieves file status information for a
+             * symbolic link.
+             *
+             * @param filename A pointer to the path of the symbolic link
+             * to retrieve status information for.
+             * @param stat_buffer A pointer to a structure of type __stat
+             * where the file status information will be stored.
+             * The structure will be populated with data such as file type,
+             * size, and timestamps.
+             * @return 0 on success, or a negative value on error.
+             */
+            itl::i32 sys_newlstat(
+                itl::cstring filename,
+                itl::__internal::system::linux::__stat* stat_buffer);
+
 #else /// i386 architecture
+
 #endif /// __x86_64__
+
             } /// extern "C"
         } /// namespace linux
     } /// namespace system
