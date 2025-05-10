@@ -108,6 +108,28 @@ namespace __internal {
              * @return 0 on success, or a negative value on error.
              */
             itl::i32 sys_close(itl::u32 file_descriptor);
+
+            /**
+             * @brief Retrieves file status information.
+             *
+             * This function is a wrapper for the stat system call on
+             * x86_64 systems. It retrieves detailed information about a
+             * file specified by its path, such as file size, permissions,
+             * and modification times, and stores the information in the
+             * provided stat_buffer.
+             *
+             * @param filename A pointer to the path of the file to retrieve
+             * status information for.
+             * @param stat_buffer A pointer to a structure of type __stat 
+             * where the file status information will be stored.
+             * The structure will be populated with data such as file type,
+             * size, and timestamps.
+             * @return 0 on success, or a negative value on error.
+             */
+            itl::i32 newstat(
+                itl::cstring filename,
+                itl::__internal::system::linux::__stat* stat_buffer);
+
 #else /// i386 architecture
 #endif /// __x86_64__
             } /// extern "C"
