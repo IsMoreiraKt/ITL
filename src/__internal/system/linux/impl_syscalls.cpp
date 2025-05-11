@@ -7,11 +7,11 @@
  * wrappers. These functions interact with the kernel using low-level
  * system call interfaces and provide a standardized interface for
  * higher-level abstractions.
- * 
+ *
  * Currently, it includes the implementation of the sys_read function,
  * which wraps the read system call.
- * 
- * @author Ismael Moreira <ismaelmoreirakt@gmail.com> 
+ *
+ * @author Ismael Moreira <ismaelmoreirakt@gmail.com>
  * @date May 10th, 2025
  */
 #include "__internal/system/syscalls/linux/impl_syscalls.hpp"
@@ -49,8 +49,8 @@ namespace __internal {
              * @param arguments A pointer to a __SysArguments structure
              * containing the file descriptor, buffer, and size of the data
              * to read.
-             * @return The number of bytes read on success, or a negative
-             * value on error.
+             * @return The number of bytes read on success, or
+             * -1 on error.
              */
             itl::ssize_t sys_read(itl::__internal::system::__SysArguments* arguments)
             {
@@ -60,6 +60,33 @@ namespace __internal {
                     itl::char_ptr, buffer,
                     itl::size_t, count)
                 itl::ssize_t syscall_return = itl::__internal::system::linux::__read(
+                    file_descriptor, buffer, count);
+
+                if (syscall_return < 0) {
+                    errno = -syscall_return;
+                    return -1;
+                }
+
+                return syscall_return;
+            }
+
+            /**
+             * @brief Writes data from a buffer to a file descriptor.
+             *
+             * @param arguments A pointer to a __SysArguments structure
+             * containing the file descriptor, the buffer and the number
+             * of bytes to write.
+             * @return The number of bytes written in case of success, or
+             * -1 on error.
+             */
+            itl::ssize_t sys_write(itl::__internal::system::__SysArguments* arguments) {
+                SYS_ARG3(
+                    arguments,
+                    itl::u32, file_descriptor,
+                    itl::cstring, buffer,
+                    itl::size_t, count
+                )
+                itl::ssize_t syscall_return = itl::__internal::system::linux::__write(
                     file_descriptor, buffer, count);
 
                 if (syscall_return < 0) {
