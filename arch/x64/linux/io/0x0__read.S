@@ -6,7 +6,7 @@
 # for x86_64 Linux. It reads data from a file descriptor into a buffer.
 # The function follows the x86_64 System V ABI calling convention.
 #
-# @author Ismael 
+# @author Ismael Moreira <ismaelmoreirakt@gmail.com>
 # @date May 10th, 2025
 section .text
 global __read
