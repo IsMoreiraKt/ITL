@@ -51,10 +51,21 @@ namespace __internal {
              * @param arguments A pointer to a __SysArguments structure
              * containing the file descriptor, buffer, and size of the data
              * to read.
-             * @return The number of bytes read on success, or a negative
-             * value on error.
+             * @return The number of bytes read on success, or
+             * -1 on error.
              */
             itl::ssize_t sys_read(itl::__internal::system::__SysArguments* arguments);
+
+            /**
+             * @brief Writes data from a buffer to a file descriptor.
+             *
+             * @param arguments A pointer to a __SysArguments structure
+             * containing the file descriptor, the buffer and the number
+             * of bytes to write.
+             * @return The number of bytes written in case of success, or
+             * -1 on error.
+             */
+            itl::ssize_t sys_write(itl::__internal::system::__SysArguments* arguments);
         } /// namespace linux
     } /// namespace system
 } /// namespace __internal
