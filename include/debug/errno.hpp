@@ -43,49 +43,6 @@ extern __thread int errno;
 itl::cstring errno_str(void);
 
 /**
- * @brief Array of human-readable error descriptions.
- *
- * This array maps error codes to their corresponding human-readable
- * descriptions. It is indexed by the error code minus one.
- */
-constexpr const char* _error_description[34] = {
-    "Operation not permitted.", ///< EPERM
-    "No such file or directory.", ///< ENOENT
-    "No such process.", ///< ESRCH
-    "Interrupted system call.", ///< EINTR
-    "I/O error.", ///< EIO
-    "No such device or address.", ///< ENXIO
-    "Argument list too long.", ///< E2BIG
-    "Exec format error.", ///< ENOEXEC
-    "Bad file number.", ///< EBADF
-    "No child processes.", ///< ECHILD
-    "Try again.", ///< EAGAIN
-    "Out of memory.", ///< ENOMEM
-    "Permission denied.", ///< EACCES
-    "Bad address.", ///< EFAULT
-    "Block device required.", ///< ENOTBLK
-    "Device or resource busy.", ///< EBUSY
-    "File exists.", ///< EEXIST
-    "Cross-device link.", ///< EXDEV
-    "No such device.", ///< ENODEV
-    "Not a directory.", ///< ENOTDIR
-    "Is a directory.", ///< EISDIR
-    "Invalid argument.", ///< EINVAL
-    "File table overflow.", ///< ENFILE
-    "Too many open files.", ///< EMFILE
-    "Not a typewriter.", ///< ENOTTY
-    "Text file busy.", ///< ETXBSY
-    "File too large.", ///< EFBIG
-    "No space left on device.", ///< ENOSPC
-    "Illegal seek.", ///< ESPIPE
-    "Read-only file system.", ///< EROFS
-    "Too many links.", ///< EMLINK
-    "Broken pipe.", ///< EPIPE
-    "Math argument out of domain of func.", ///< EDOM
-    "Math result not representable." ///< ERANGE
-};
-
-/**
  * @def EPERM
  * @brief Operation not permitted.
  */
