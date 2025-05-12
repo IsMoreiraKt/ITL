@@ -79,13 +79,13 @@ namespace __internal {
              * @return The number of bytes written in case of success, or
              * -1 on error.
              */
-            itl::ssize_t sys_write(itl::__internal::system::__SysArguments* arguments) {
+            itl::ssize_t sys_write(itl::__internal::system::__SysArguments* arguments)
+            {
                 SYS_ARG3(
                     arguments,
                     itl::u32, file_descriptor,
                     itl::cstring, buffer,
-                    itl::size_t, count
-                )
+                    itl::size_t, count)
                 itl::ssize_t syscall_return = itl::__internal::system::linux::__write(
                     file_descriptor, buffer, count);
 
