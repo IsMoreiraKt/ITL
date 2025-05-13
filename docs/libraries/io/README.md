@@ -5,7 +5,7 @@ This module provides tools for manipulating the file system, including directori
 ### Libraries
 
 | Name         | Description                                                                                              | Implemented | Docs                                         |
-|--------------|----------------------------------------------------------------------------------------------------------|-------------|----------------------------------------------|
+| ------------ | -------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------- |
 | itl::dir     | It provides tools for manipulating directories, including the ability to create, remove and list them.   | No          | [dir documentation](./dir/README.md)         |
 | itl::file    | It enables you to manipulate files by reading, writing and deleting them.                                | No          | [file documentation](./file/README.md)       |
 | itl::io      | Export utility functions such as print and input for standard input and output.                          | No          | [io documentation](./io/README.md)           |

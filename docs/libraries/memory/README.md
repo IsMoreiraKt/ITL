@@ -5,7 +5,7 @@ This module is responsible for memory management within ITL. It provides a wide 
 ### Libraries
 
 | Name                   | Description                                                                                                    | Implemented | Docs                                                             |
-|------------------------|----------------------------------------------------------------------------------------------------------------|-------------|------------------------------------------------------------------|
+| ---------------------- | -------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------- |
 | itl::allocator         | A library for customised memory allocation, including support for block alignment and tracking.                | No          | [allocator documentation](./allocator/README.md)                 |
 | itl::arena             | It implements memory arenas for efficient batch allocation, thereby reducing allocation overhead.              | No          | [arena documentation](./arena/README.md)                         |
 | itl::garbage_collector | It incorporates the Boehm Garbage Collector to provide automatic memory management and eliminate memory leaks. | No          | [garbage_collector documentation](./garbage_collector/README.md) |
